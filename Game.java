@@ -11,18 +11,19 @@
  *  rooms, creates the parser and starts the game.  It also evaluates and
  *  executes the commands that the parser returns.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Salvatore Anzalone
+ * @version 10.19.2022
  */
 
 public class Game 
 {
     private Parser parser;
     private Room currentRoom;
-        
+    private ProcessBuilder.Redirect.Type wantToQuit;
+    
     /**
-     * Create the game and initialise its internal map.
-     */
+    * Create the game and initialise its internal map.
+    */
     public Game() 
     {
         createRooms();
@@ -114,6 +115,14 @@ public class Game
             case GO:
                 goRoom(command);
                 break;
+                
+            case LOOK:
+                look(command);
+                break;
+                
+            case EAT:
+                eat(command);
+                break;
 
             case QUIT:
                 wantToQuit = quit(command);
@@ -124,6 +133,39 @@ public class Game
 
     // implementations of user commands:
 
+    /**
+     * Various commands for different situations that get processed.
+     * Each of the commands are listed, and will be executed, based on
+     * the inputs the player uses.
+     * @param commandWord Holds all valid command words.
+     */
+    private void processCommand()
+    {
+        if(commandWord.equals("help"))
+        {
+            printHelp();
+        }
+        
+        else if(commandWord.equals("go"))
+        {
+            goRoom(command);
+        }
+        else if(commandWord.equals("look"))
+        {
+            look(command);
+        }
+   
+        else if(commandWord.equals("eat"))
+        {
+            eat(command);
+        }
+        
+        else if(commandWord.equals("quit"))
+        {
+            wantToQuit = quit(command);
+        }
+    }
+    
     /**
      * Print out some help information.
      * Here we print some stupid, cryptic message and a list of the 
@@ -164,6 +206,53 @@ public class Game
         }
     }
 
+    /** 
+     * Try to find something. If it's important, get it,
+     * otherwise cue the opposite print statement.
+     */
+    private void look(Command command) 
+    {
+        if(!command.hasSecondWord())
+        {
+            System.out.println("What do I need to take?");
+            return;
+        }
+
+        String direction = command.getSecondWord();
+
+        // Try to leave current room.
+        Room nextRoom = currentRoom.getExit(direction);
+
+        if (nextRoom == null)
+        {
+            System.out.println("Nothing in here is important.");
+        }
+        else
+        {
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+        }
+    }
+    
+    /** 
+     * Try to eat something. If there is food, eat it,
+     * otherwise cue the opposite print statement.
+     */
+    private void eat(Command command) 
+    {
+        if(command.hasSecondWord())
+        {
+            System.out.println("You have eaten now and you are " +
+                                "not hungry any more.");
+            return;
+        }
+        
+        else
+        {
+            System.out.println("That's not food!");
+        }
+    }
+    
     /** 
      * "Quit" was entered. Check the rest of the command to see
      * whether we really quit the game.
