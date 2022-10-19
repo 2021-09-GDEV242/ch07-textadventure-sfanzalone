@@ -68,8 +68,8 @@ public class Game
     {            
         printWelcome();
 
-        // Enter the main command loop.  Here we repeatedly read commands and
-        // execute them until the game is over.
+        // Enter the main command loop.  Here we repeatedly read commands
+        // and execute them until the game is over.
                 
         boolean finished = false;
         while (! finished) {
@@ -86,8 +86,10 @@ public class Game
     {
         System.out.println();
         System.out.println("Welcome to the World of Zuul!");
-        System.out.println("World of Zuul is a new, incredibly boring adventure game.");
-        System.out.println("Type '" + CommandWord.HELP + "' if you need help.");
+        System.out.println("World of Zuul is a new, incredibly " +
+                            "boring adventure game.");
+        System.out.println("Type '" + CommandWord.HELP +
+                            "' if you need help.");
         System.out.println();
         System.out.println(currentRoom.getLongDescription());
     }
@@ -103,7 +105,8 @@ public class Game
 
         CommandWord commandWord = command.getCommandWord();
 
-        switch (commandWord) {
+        switch (commandWord)
+        {
             case UNKNOWN:
                 System.out.println("I don't know what you mean...");
                 break;
@@ -208,7 +211,7 @@ public class Game
 
     /** 
      * Try to find something. If it's important, get it,
-     * otherwise cue the opposite print statement.
+     * otherwise print an error message.
      */
     private void look(Command command) 
     {
@@ -260,11 +263,13 @@ public class Game
      */
     private boolean quit(Command command) 
     {
-        if(command.hasSecondWord()) {
+        if(command.hasSecondWord())
+        {
             System.out.println("Quit what?");
             return false;
         }
-        else {
+        else
+        {
             return true;  // signal that we want to quit
         }
     }
