@@ -1,0 +1,15 @@
+Features that were added to project:
+
+All Intermedieate Features:
+
+Items
+
+Retrace your Steps (Backtracking)
+
+A Player class
+
+2 Advanced Features:
+
+Locked doors and keys
+
+Eating gives strength, or can make you weaker
