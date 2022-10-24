@@ -20,6 +20,8 @@ public class Game
     private Parser parser;
     private Room currentRoom;
     private ProcessBuilder.Redirect.Type wantToQuit;
+    private CommandWord commandWord;
+    private ProcessBuilder.Redirect.Type command;
     
     /**
     * Create the game and initialise its internal map.

@@ -12,13 +12,15 @@ import java.util.Iterator;
  * connected to other rooms via exits.  For each existing exit, the room 
  * stores a reference to the neighboring room.
  * 
- * @author  Michael Kölling and David J. Barnes
- * @version 2016.02.29
+ * @author  Salvatore Anzalone
+ * @version 10.24.2022
  */
 
 public class Room 
 {
     private String description;
+    private String item01, item02, item03, item04, item05;
+    private String details01, details02, details03, details04, details05;
     private HashMap<String, Room> exits;        // stores exits of this room.
 
     /**
@@ -52,6 +54,78 @@ public class Room
         return description;
     }
 
+    /**
+     * @return The item in the room.
+     * @return The details of the item.
+     */
+    public String getItem01Details()
+    {
+        String item01 = "Crowbar\n\n";
+        String details01 = "Weight: 1.32 lbs\n" +
+                           "Length: 300 mm\n" +
+                           "Purpose: Helps detach planks. But " +
+                           "what about the doors?";
+        
+        return item01;
+    }
+    
+    /**
+     * @return The item in the room.
+     * @return The details of the item.
+     */
+    public String getItem02Details()
+    {
+        String item02 = "Fire Extinguisher\n\n";
+        String details02 = "Weight: 10 lbs\n" +
+                           "Height: 533.4 mm\n" +
+                           "Purpose: Helps put out fire.";
+        
+        return item02;
+    }
+    
+    /**
+     * @return The item in the room.
+     * @return The details of the item.  This is a basic food item.
+     */
+    public String getItem03Details()
+    {
+        String item03 = "Ham Sandwhich";
+        String details03 = "Weight: 3 lbs\n" +
+                           "Height: 152.4 mm\n" +
+                           "Purpose: Helps prevent starvation.";
+        
+        return item03;
+    }
+    
+    /**
+     * @return The item in the room.
+     * @return The details of the item.
+     * This is a food item that can't be eaten.
+     */
+    public String getItem04Details()
+    {
+        String item04 = "Rotten Apple";
+        String details04 = "Weight: 0.33 lbs\n" +
+                           "Height: 4,000 mm\n" +
+                           "Purpose: You don't want to know....";
+        return item04;
+    }
+    
+    /**
+     * @return The item in the room.
+     * @return The details of the item.
+     */
+    public String getItem05Details()
+    {
+        String item05 = "Flashlight";
+        String details05 = "Weight: 2.625 lbs\n" +
+                           "Length: 76.2 mm\n" +
+                           "Purpose: Helps see things in front of you" +
+                           " better.  And there's batteries in it!" +
+                           " Hmm... Seems it's only at 50% power.";
+        return item05;
+    }
+    
     /**
      * Return a description of the room in the form:
      *     You are in the kitchen.
@@ -89,4 +163,3 @@ public class Room
         return exits.get(direction);
     }
 }
-
