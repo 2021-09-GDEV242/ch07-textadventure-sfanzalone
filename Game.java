@@ -284,13 +284,13 @@ public class Game
         if(command.hasSecondWord())
         {
             System.out.println("You have eaten now and you are " +
-                                "not hungry any more.");
+                                "stronger, and not hungry any more.");
             return;
         }
         
         else
         {
-            System.out.println("That's not food!");
+            System.out.println("That's not food!  I feel sick.");
         }
     }
     

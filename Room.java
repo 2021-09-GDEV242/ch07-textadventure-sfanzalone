@@ -92,7 +92,9 @@ public class Room
         String item03 = "Ham Sandwhich";
         String details03 = "Weight: 3 lbs\n" +
                            "Height: 152.4 mm\n" +
-                           "Purpose: Helps prevent starvation.";
+                           "Purpose: Helps prevent starvation, "+
+                           "and gives you energy to help provide " +
+                           "you strength.";
         
         return item03;
     }
