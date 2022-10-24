@@ -127,6 +127,10 @@ public class Game
                 eat(command);
                 break;
 
+            case BACK:
+                back(command);
+                break;
+                
             case QUIT:
                 wantToQuit = quit(command);
                 break;
@@ -161,6 +165,11 @@ public class Game
         else if(commandWord.equals("eat"))
         {
             eat(command);
+        }
+        
+        else if(commandWord.equals("back"))
+        {
+            back(command);
         }
         
         else if(commandWord.equals("quit"))
@@ -210,6 +219,35 @@ public class Game
     }
 
     /** 
+     * Back track towards a previous room. If it's important, get it,
+     * otherwise print an error message.
+     */
+    private void back(Command command) 
+    {
+        if(!command.hasSecondWord())
+        {
+            //If there was something important in a previous room...
+            System.out.println("I need to go back.");
+            return;
+        }
+
+        String direction = command.getSecondWord();
+
+        // Try to leave current room.
+        Room nextRoom = currentRoom.getExit(direction);
+
+        if (nextRoom == null)
+        {
+            System.out.println("The door is locked!");
+        }
+        else
+        {
+            currentRoom = nextRoom;
+            System.out.println(currentRoom.getLongDescription());
+        }
+    }
+    
+    /** 
      * Try to find something. If it's important, get it,
      * otherwise print an error message.
      */
@@ -232,8 +270,7 @@ public class Game
         }
         else
         {
-            currentRoom = nextRoom;
-            System.out.println(currentRoom.getLongDescription());
+            System.out.println("I found it!");
         }
     }
     
